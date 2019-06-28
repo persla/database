@@ -1,0 +1,43 @@
+<%- include("header", {title: title}); %>
+<article class="">
+<h1>Beställning </h1>
+<p>Lägg till beställning på order med orderid:<b> <%= id %></b>.</p>
+    <!-- <td><a href="/eshop/ordering/<%= res[0].order_id %>">Beställning</a> -->
+    <form class="label-left" method="post">
+        <fieldset>
+            <legend>Beställ</legend>
+
+            <p><label>Orderid</label>
+            <input id="order_id" type="text" style="background-color:lightgray;"
+            name="order_id" size="4" readonly value=<%= id %>>
+            </p>
+            <p>
+            <label>Välj produkt</label>
+            <select class="" name="prod_kod">
+
+                <option value="0">Välj i listan</option>
+                <% for (const row of res) { %>
+                    <option value="<%= row.kod %>"><td><%= row.titel %></option>
+                <% }; %>
+            </select>
+            </p>
+            <p>
+            <label for="antal">Antal</label>
+            <input id="antal" type="number" name="antal" required
+            minlength="1" maxlength="2" size="5">
+            <span class="validity"></span>
+            </p>
+
+            <!-- <p>
+            <label for="antal">Beställning klar</label>
+            <input type="checkbox" name="best" value="B">
+            </p> -->
+            <input type="submit" name="doit" value="Beställ">
+
+        </fieldset>
+    </form><p>
+    <a href="/eshop/show-order/<%= id %>">Åter order</a>
+    </p>
+</article>
+
+<%- include("footer"); %>

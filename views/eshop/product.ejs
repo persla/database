@@ -1,0 +1,31 @@
+<%- include("header", {title: title}); %>
+<article class="">
+<h1>Produkter i lager</h1>
+<table>
+    <tr>
+        <th>Visa</th>
+        <th>Pris</th>
+        <th>Titel</th>
+        <th>Antal</th>
+        <th>Kategori</th>
+        <th>Åtgärd</th>
+    </tr>
+<% for (const row of res) { %>
+    <tr>
+        <td><a href="/eshop/show/<%= row.kod %>"><%= row.kod %></a>
+        <td><%= row.pris %></td>
+        <td><%= row.titel %></td>
+        <td><%= row.antal %></td>
+        <td><%= row.kategori %></td>
+        <td><a href="/eshop/edit/<%= row.kod %>">&#x270e;</a>
+        <a href="/eshop/delete/<%= row.kod %>">&#x1F5D1;</a></td>
+
+        <td class="right"></td>
+    </tr>
+<% }; %>
+</table>
+<p>
+    <a href="index">Index</a>
+</p>
+</article>
+<%- include("footer"); %>

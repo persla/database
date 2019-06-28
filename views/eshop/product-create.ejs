@@ -1,0 +1,92 @@
+<%- include("header", {title: title}); %>
+
+<article class="">
+    <% var obj = "";
+        for (const row of res1){
+            obj += row.kod + ",";
+        }
+        obj = obj.split(",");%>
+<h1>Ny produkt</h1>
+
+<p>Lägg till ny produkt i eshopen.</p>
+
+<form name="form" class="label-left" method="post"  onsubmit="return checkForm(this);">
+    <fieldset>
+        <legend>Detaljer för ny produkt</legend>
+
+        <label for="kod">Produktkod</label><spam id="divMsg1"></spam><br>
+        <input id="kod" type="text" name="kod" required
+        minlength="3" maxlength="8" size="8">
+        <span class="validity"></span>
+        <p>
+        <label for="pris">Pris</label><br>
+        <input id="pris" type="number" name="pris" required
+        minlength="1" maxlength="4" size="5">
+        <span class="validity"></span>
+        </p><p>
+        <label for="titel">Titel - Artist</label><br>
+        <input id="titel" type="text" name="titel" required
+        minlength="4" maxlength="80" size="50">
+        <span class="validity"></span>
+        </p><p>
+        <label for="bildlank">Bildlänk</label><br>
+        <input id="bildlank" type="text" name="bildlank" required
+        minlength="4" maxlength="100" size="50">
+        <span class="validity"></span>
+        </p><p>
+        <label for="beskrivning">Beskrivning</label><br>
+        <input id="beskrivning" type="text" name="beskrivning" required
+        minlength="4" maxlength="150" size="50">
+        <span class="validity"></span>
+        </p>
+        <p>Kategori(min 1 och max 3)<spam id="divMsg"></spam></p>
+        <p>
+                <% for (const row of res) { %>
+                <label for="<%= row.kategori %>"><%= row.kategori %></label>
+                <input type="checkbox" id="<%= row.kategori %>" name="category" value="<%= row.kategori %>">
+                <% }; %>
+        </p>
+                <input type="submit" name="doit" value="Skapa" >
+            </fieldset>
+        </form>
+        </article>
+        
+        <script>
+        function checkArray(form, arrayName) {
+          var retval = new Array();
+          for(var i=0; i < form.elements.length; i++) {
+            var el = form.elements[i];
+            if(el.type == "checkbox" && el.name == arrayName && el.checked) {
+              retval.push(el.value);
+            }
+        }
+          return retval;
+        }
+        var getTest = <%- JSON.stringify(obj) %>;
+
+        console.log(getTest);
+
+        function checkForm(form) {
+
+            if(getTest.includes(form.kod.value)) {
+                document.getElementById("divMsg1").innerHTML = " &#9888; Produktkoden <b>" + form.kod.value +
+                " </b>finns redan registrerad, byt till annan kod!";
+                return false;
+            }
+
+            var itemsChecked = checkArray(form, "category");
+
+            if(itemsChecked.length == 0) {
+                document.getElementById("divMsg").innerHTML = "<b> &#9888; Du måste välja minst en kategori!</b>";
+                return false;
+            }
+            if(itemsChecked.length > 3) {
+                document.getElementById("divMsg").innerHTML = "<b> &#9888; Du får välja max tre kategorier!</b>";
+                return false;
+            } else {
+                return true;
+            }
+        }
+        </script>
+
+<%- include("footer"); %>

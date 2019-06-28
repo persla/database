@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <title>Redovisning av kursmoment i kursen databas</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="icon" href="favicon.ico">
+</head>
+
+<body>
+
+
+
+<header>
+    <nav>
+        <a href="me.html">Me</a> |
+        <a href="redovisning.html">Redovisning</a> |
+        <a href="om.html">Om</a>
+    </nav>
+</header>
+
+
+
+<article>
+
+<header>
+<h1>Redovisning av kursmoment i kursen databas</h1>
+</header>
+
+<section>
+<h2>Kmom01</h2>
+<p>För kursen har jag valt att arbeta i Cygwin för tillgång till databas klienten
+    i terminalen och MySQL Workbench version 8.0.14 för att kunna arbeta i Windows
+    grafiska gränssnitt.  Jag har valt de rekommenderande verktygen för att kunna
+    lättare ta till mig kunskaper och tillämpa dessa utan onödiga implementeringsproblem. </p>
+<p>Installationen av databasen och klienten fungerade på det hela taget bra. Det enda
+    större problemet som jag stötte på var rootanvändaren och lösenordet i terminalen.
+    Vilken jag fick lösa genom att skapa en ny användare med samma rättigheter som
+    rootanvändaren och ett ”mysql_native_password” lösenord för att göra användarkontot
+    kompatibelt mellan terminalen och Workbench. För övrigt var den initiala utmaningen
+    att få till den rätta syntaxen i SQL koden så att nya användare, databasen och
+    tabellerna initierades på ett korrekt sätt, där hade jag stor hjälp av guiden och
+    Mysql manualen.</p>
+<p>Jag har jobbat lite med databaser sedan tidigare. Under kursen htmlphp arbetade
+    vi med sqlite som är en filbaserad databas, där vi framför allt arbetade med
+    DDL(såsom CREATE, ALTER och DROP) DML(såsom SELECT, INSERT och UPDATE). Vi
+    använde då  gränssnittet PDO för att koppla samman databasen med webbplatsen
+    och skapa olika SQL funktionaliteter. Med detta som bakgrund kändes det helt
+    ok att arbeta med och genomföra det första kursmomentet.</p>
+<p>Att jobba igenom guiden fungerade bra. Strukturen hade en lite annorlunda
+    konstruktion än tidigare kurser med uppgifter insprängda i själva guiden
+    vilket jag fann lärorikt och utvecklande eftersom de inhämtade kunskaperna
+    kunde tillämpas direkt, vilket i sin tur är ett effektivt sätt att lära enligt
+    min uppfattning.</p>
+<p>Det första jag vill nämna när det gäller jämförelse med andra sätt att programmera
+    är att det är första gången jag inte fick något valideringsfel när jag kontrollerade
+    koden. Vad detta kan bero på kan jag endast spekulera i, har jag blivit kunnigare
+    (nej, inte så mycket kunnigare), är MySQL mer strikt och tydlig när koden inte
+    fungerar korrekt eller är min SQL-kod fortfarande på en relativt simpel nivå och
+    felen kommer sinom tid? Det återstår att se.  Den stora skillnaden mot andra sätt
+    att jag har stött på är att man i SQL programmerar mot en tydlig och strikt struktur
+    i from av tabeller med olika rader och kolumner, där data ska manipuleras och
+    efterfrågas på olika sätt. Likheterna är att man kan även i SQL göra if-satser
+    och loopar som i andra programspråk jag har stött på under året. Syntaxen skiljer
+    i SQL där kommandona ska vara i versaler vilken oftast är förbehållna globala
+    variabler(tex som  GET_  variabeln i php) i andra språk jag har hittills stött på. </p>
+<p>Mitt TIL för detta moment är bash-skriptet som återställer databasen. Att formulera
+    en textfil med de kommandon som ska exekveras och ”bara” köra den filen med alla
+    filerna för att återställa databasen(särskilt när den första ska köras som root
+    och de andra som användare) istället för att köra de var och en för sig är en
+    lärdom som jag tar med mig från detta moment. Minder utrymme för misstag och
+    mer kontroll över filerna och deras exekvering.</p>
+
+</section>
+
+<section>
+<h2>Kmom02</h2>
+<p>Arbetet med att sätta sig in i och arbeta med SQL har över lag gått bra.
+    SQL- satserna blir mer och mer komplicerade(vilket i och för sig är naturligt
+    i en kurs med olika moment som bygger på varandra), men det har hittills varit
+    relativt hanterbart efter som vi jobbade med sqlite i htmlphp-kursen i höstas,
+    således finns det för första gången en igenkänningsfaktor för mig i den här
+    kursen. Det nya är emellertid kunskaperna för att kunna sortera raderna i
+    tabellen på aggregerade värden via HAVING, skapa Vyer för att få ett kortkommando
+    till  längre selectsatser, union för att kunna slå samman två tabeller, slå ihop
+    två tabeller för att kunna jämföra dessa och utföra förändringsberäkningar via en
+    gemensam nyckel, sist men inte minst har det varit intressant att beröra
+    villkors-satser och hur dessa beter sig och kan användas i rapporter. Min
+    uppfattning hittills om databaser och SQL är att det är ett kraftfullt
+    verktyg även om de databaser vi hittills har arbetat med är små, det gäller
+    dock att dubbelkolla att SQL-satserna är formulerade på det sätt som är
+    tänkt och att man får det svar man efterfrågar. Ett sätt som jag lärt mig
+    under kursen är att formulera små script, såsom medelvärdet på en kolumn
+    för att bedöma rimligheten i svaret på sql-frågan.</p>
+<p>Detta är min första bekantskap med node.js och JavaScript på serversidan.
+    Installationen av modulerna och uppkopplingen till databasen fungerade utan
+    några felmeddelanden. Min uppfattning är att det tycks vara ett smidigt sätt
+    att använda skript för att söka i databaser med hjälp av node.js och få fram
+    textbaserade rapporter i tabell form. </p>
+<p>Koncepten async och await i asynkron programmering har varit en utmaning
+    att greppa även om jag har stött på det i JavaScript i form av enventhanteraren,
+    men det är emellertid nu när vi häller på med SQL och databaser som det blir
+    mer uppenbart att det finns en risk att det kan uppstå problem om koden inte
+    exekveras i rätt ordning och att varje enskild funktion är klar innan nästa
+    ska verkställas. I och med det här momentet har jag fått ökad förståelse för
+    konceptet och är medveten om möjligheter och problematiken att hantera event
+    loopen och de blockade operationerna. </p>
+<p>På det hela taget gick det bra att koppla ihop JavaScript och Node,js med SQL
+    och databasen. Själva SQL formuleringen och strukturen liknade mycket den som
+    vi använde när vi jobbade med PDO i htmlphp-kursen. Den utmaningen var att
+    lägga funktionerna i moduler och göra require på dem in i main modulen.
+    Det var inga problem att flytta ut teacherAsTable() för utskriften av
+    rapporten eftersom den funktionen inte var definierad som async, men när
+    det gällde funktionernas som ar definierad som async, till exempel
+    sökfunktionen med SQL koden så lyckades jag inte få det att fungera(jag
+    använde den inom async funktionen med await). Så där återstår det en
+    hel del att lära för att kunna dela upp koden i moduler och göra main
+    filen så liten som möjligt. </p>
+<p>Mitt TIL för detta moment är medvetenheten om konceptet med async och await
+    i JavaScript med Node.js som asynkrona programmeringsspråk och betydelsen
+    att koden exekveras i rätt ordning.</p>
+</section>
+
+<section>
+<h2>Kmom03</h2>
+<p>Mina reflektioner kring att koda och jobba med menydrivna terminalprogram i
+    JavaScript och Node.js är att det fungerar på det hela taget bra och har
+    varit utvecklande för hur Node.js beter sig med dess asynkrona programstruktur.
+    Att använda terminalprogrammet för att generera menyer och styra programmet
+    är inte det mest användarvänliga gränssnittet, men de skapar en förståelse
+    för programmets funktionalitet med dess avskalade vy.</p>
+<p>Till skillnad från kmom02, där jag enbart flyttade ut utskriftsfunktionen av
+    tabellen i en egen fil för att separera koden, har jag strävat under kmom03
+    att skapa riktiga moduler för att separera koden på ett tydligare och mer
+    strukturerat sätt. Jag använde mig av objekt för att skapa de olika
+    funktionaliteterna i modulerna som uppgiften i kursmomentet krävde.
+    Alla dessa funktioner samlade jag i en fil eftersom uppdraget hittills
+    varit begränsat och de olika modulerna har varit hanterbara i omfång.
+    Utvecklingspotentialen när de gäller min kodstruktur finns som jag ser
+    det i att dela upp modulerna i flera filer med mer specifik funktionalitet
+    tex. Sökfunktionerna i databasen och uppdateringar kan med fördel separeras
+    i olika filer för ökad överskådlighet och förenkla underhåll av koden när
+    programmet växer. Jag ser även utvecklingspotential när det gäller det meny
+    i terminalprogrammet som kunde bli mer användarvänligt och minimera felinmatningar
+    och missförstånd från användarens sida tex skulle jag ha arbetat in ett
+    felmeddelande  i switch case defaultvärde.</p>
+<p>När det gäller outer joins var utmaningen att hålla koll på i vilken ordning
+    man joinade tabellerna, om det skulle vara left eller right outer join, det
+    var dock en viktig funktion för att kunna kolla vilka delar i en tabell som
+    sakna värden i förhållande till en annan tabell och använda IS NULL för att
+    få fram information dessa tomma rader i en select sats. När det gäller
+    subqueries var utmaningen att vilken fråga ska man ställa i den andra
+    frågan och vilka tabeller ska användas. Det stora förändringen för mig
+    för mig under detta kmom var övergången från Workbench, som jag huvudsakligen
+    har arbetat i tidigare, till terminalklienten, en stark bidragande orsak var
+    att  LOAD DATA INFILE(Excelfilen som skulle importeras till databasen) inte
+    fungerade med Workbench(som jag tolkar det efter en tids Googlande så finns
+    det en bugg i Workbench som det inte har löst i den version som jag arbetar i).
+    Detta innebar dock att jag fick arbeta och utveckla mina förmågor i
+    terminalklieten och skriva filerna direkt i atom vilket jag vara
+    effektivt sätt att arbeta med SQL, inget ont som har något gott med sig:).
+    Jag laddade även ned  den externa modulen console.table för att underlätta
+    hanteringen av tabeller(jag hoppas att jag har placerat den rätt så att den
+    finns i me/package.json)</p>
+<p>Jag har skapat en ER-modell och strävat att arbeta utifrån de första sex
+    stegen i ”Kokbok för databasmodellering”. När det gällde att identifiera
+    entiteter utifrån stycket som beskriver databasen så arbetade jag genom
+    den och strök under kandidaterna som kunde bli eventuella tabeller.
+    Resultatet blev konkreta tabeller, saknas gör eventuella kopplingstabeller
+    för att göra relationerna i databasen mer hanterbara. När det gäller
+    relationerna mellan tabellerna kände jag mig mer osäker, vilka tabeller
+    som ska ha relation till vilka, tex så fick produktregistret väldigt många
+    kopplingar till andra tabeller, vilket eventuellt kan skapa en sårbarhet för
+    databasen. När det gäller attributen till de olika entiteterna så strävade
+    jag efter hitta så bra kopplingspunkter som möjligt mellan de olika tabellerna
+    via primärnycklar och främmande nycklar. Jag har arbetat med ER-modelleringen
+    utifrån bästa förmåga och förmodligen kommer jag att få revidera den när vi
+    går vidare till den logiska och fysiska modelleringen, vilket är naturligt
+    om jag har tolkat detta processinriktade arbetssätt på rätt sätt. </p>
+<p>Utmaningarna under detta kursmoment har framförallt varit arbetet med
+    Er-modelleringen och formulera logiska kopplingar mellan entiteter och
+    relevanta attribut som kan bli konkreta tabeller, rader och nycklar i
+    en framtida databas</p>
+<p>Mitt TIL för detta moment är användningen av terminalen i arbetet med
+    SQL-satserna mot databasen och den ytterligare förståelsen för hur man
+    kan använda moduler för att strukturera koden på ett tydligare sätt.</p>
+<p>Jag har även under detta kursmoment rätta till de valideringsfel som fanns i
+    kmom02 så den nu validerar mod dbwebb inspect.</p>
+</section>
+
+<section>
+<h2>Kmom04</h2>
+<p>Här är redovisningstexten</p>
+</section>
+
+<section>
+<h2>Kmom05</h2>
+<p>Här är redovisningstexten</p>
+</section>
+
+<section>
+<h2>Kmom06</h2>
+<p>Här är redovisningstexten</p>
+</section>
+
+<section>
+<h2>Kmom07-10</h2>
+<p>Här är redovisningstexten</p>
+</section>
+
+<footer>
+<p>En footer till artikeln.</p>
+</footer>
+
+</article>
+
+
+
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

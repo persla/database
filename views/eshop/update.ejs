@@ -1,0 +1,72 @@
+<%- include("header", {title: title}); %>
+<script>
+function checkArray(form, arrayName)
+{
+  var retval = new Array();
+  for(var i=0; i < form.elements.length; i++) {
+    var el = form.elements[i];
+    if(el.type == "checkbox" && el.name == arrayName && el.checked) {
+      retval.push(el.value);
+    }
+  }
+  return retval;
+}
+
+function checkForm(form) {
+    var itemsChecked = checkArray(form, "category");
+
+    if(itemsChecked.length > 3) {
+        document.getElementById("divMsg").innerHTML = "<b> &#9888; Du får välja max tre kategorier!</b>";
+        return false;
+    } else {
+        return true;
+    }
+}
+</script>
+
+<article>
+<h1>Ändra en produkt</h1>
+<p>Revidera uppgifterna för produkten med följande produktkod:<b> <%= id %></b>.</p>
+<pre><%#= JSON.stringify(res, null, 4) %></pre>
+<form class="label-left" method="post" onsubmit="return checkForm(this);" action="/eshop/edit" >
+    <fieldset>
+        <legend>Detaljer för produkt</legend>
+
+        <label for="kod">Produktkod</label><br>
+        <input id="kod" type="text" style="background-color:gray;" name="kod" readonly value="<%= res[0].kod %>">
+        <p>
+        <label for="pris">Pris</label><br>
+        <input id="pris" type="number" name="pris" required
+        minlength="1" maxlength="4" size="5" value="<%= res[0].pris %>">
+        <span class="validity"></span>
+        </p><p>
+        <label for="titel">Titel - Artist</label><br>
+        <input id="titel" type="text" name="titel" required
+        minlength="4" maxlength="80" size="50" value="<%= res[0].titel %>">
+        <span class="validity"></span>
+        </p><p>
+        <label for="bildlank">Bildlänk</label><br>
+        <input id="bildlank" type="text" name="bildlank" required
+        minlength="4" maxlength="80" size="50" value="<%= res[0].bildlank %>">
+        <span class="validity"></span>
+        </p><p>
+        <label for="beskrivning">Beskrivning</label><br>
+        <input id="beskrivning" type="text" name="beskrivning" required
+        minlength="4" maxlength="80" size="50" value="<%= res[0].beskrivning %>">
+        <span class="validity"></span>
+        </p><p>
+        <label for="beskrivning">Kategori</label><br>
+        <%= res[0].kategori %>
+        </p>
+        <p>Ny Kategorisering(Max 3 kategorier)</p> <spam id="divMsg"></spam>
+                <% for (const row of res1) { %>
+                <label for="<%= row.kategori %>"><%= row.kategori %></label>
+                <input type="checkbox" id="<%= row.kategori %>" name="category" value="<%= row.kategori %>">
+                <% }; %><p>
+        <input type="submit" name="doit" value="Spara ändringar"></p>
+    </fieldset>
+</form>
+
+</article>
+
+<%- include("footer"); %>

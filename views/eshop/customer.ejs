@@ -1,0 +1,32 @@
+<%- include("header", {title: title}); %>
+<article class="">
+<h1>Kunder i eshopen</h1>
+<table>
+    <tr>
+        <th>KundNr</th>
+        <th>Namn</th>
+        <th>Adress</th>
+        <th>Telefon</th>
+        <!-- <th>Adress</th>
+        <th>Telefon</th>
+        <th>Åtgärd</th> -->
+    </tr>
+<% for (const row of res) { %>
+    <tr>
+        <!-- <td><a href="/eshop/show/<%= row.kod %>"><%= row.kod %></a> -->
+        <td><%= row.kundnr %></td>
+        <td><%= row.fornamn %></td>
+        <td><%= row.adress %></td>
+        <td><%= row.telefon %></td>
+        <!-- <td><a href="/eshop/edit/<%= row.kod %>">Ändra</a>
+        <a href="/eshop/delete/<%= row.kod %>">Radera</a></td> -->
+
+        <td class="right"></td>
+    </tr>
+<% }; %>
+</table>
+<p>
+    <a href="index">Index</a>
+</p>
+</article>
+<%- include("footer"); %>

@@ -1,0 +1,19 @@
+<%- include("header", {title: title}); %>
+<article class="">
+<h1>Resultat av sökning i Logg</h1>
+<table>
+    <tr>
+        <th>id</th>
+        <th>Tidsstämpel</th>
+        <th>Händelse</th>
+    </tr>
+<% for (const row of res) { %>
+    <tr>
+        <td><%= row.id %></td>
+        <td><%= row.Tidsstämpel.toLocaleString() %></td>
+        <td><%= row.Händelse %></td>
+    </tr>
+<% }; %>
+</table>
+</article>
+<%- include("footer"); %>

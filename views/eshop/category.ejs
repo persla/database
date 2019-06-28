@@ -1,0 +1,23 @@
+<%- include("header", {title: title}); %>
+<article class="">
+<h1>Produktkategorier som finns i eshopen</h1>
+
+<table>
+    <tr>
+        <th></th>
+        <th>Kategori</th>
+    </tr>
+<% for (const row of res) { %>
+    <tr>
+        <td><%= row.kod %></td>
+        <!-- <td><%= row.kategori %></td> -->
+        <td><a href="/eshop/show-category/<%= row.kategori %>"><%= row.kategori %></a>
+        <td class="right"></td>
+    </tr>
+<% }; %>
+</table>
+<p>
+    <a href="index">Index</a>
+</p>
+</article>
+<%- include("footer"); %>

@@ -1,0 +1,31 @@
+<%- include("header", {title: title}); %>
+<article class="">
+<h1>Radera en produkt</h1>
+<p>Radera produkt med följande produktkod:<b> <%= id %></b>.</p>
+<pre><%#= JSON.stringify(res, null, 4) %></pre>
+<form class="label-left" method="post" action="/eshop/delete">
+    <fieldset>
+        <legend>Detaljer för produkt</legend>
+
+        <label for="kod">Produktkod</label><br>
+        <input id="kod" type="text" style="background-color:gray;" name="kod" readonly value="<%= res[0].kod %>">
+        <p>
+        <label for="pris">Pris</label><br>
+        <input id="pris" type="number" name="pris" readonly value="<%= res[0].pris %>">
+        </p><p>
+        <label for="titel">Titel - Artist</label><br>
+        <input id="titel" type="text" name="titel" readonly value="<%= res[0].titel %>">
+        </p><p>
+        <label for="bildlank">Bildlänk</label><br>
+        <input id="bildlank" type="text" name="bildlank" readonly value="<%= res[0].bildlank %>">
+        </p><p>
+        <label for="beskrivning">Beskrivning</label><br>
+        <input id="beskrivning" type="text" name="beskrivning"readonly value="<%= res[0].beskrivning %>">
+        </p>
+        <input type="submit" name="doit" value="Radera">
+    </fieldset>
+</form>
+
+</article>
+
+<%- include("footer"); %>

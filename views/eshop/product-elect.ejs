@@ -1,0 +1,41 @@
+<%- include("header", {title: title}); %>
+<article class="">
+<h1>Orderregister</h1>
+<!-- <p>Information om produkt med produktkod:<b> <%= id %></b>.</p> -->
+<pre><%#= JSON.stringify(res, null, 4) %></pre>
+    <!-- <h3>Kund</h3>
+    <%= res[0].kundnr %>
+    <h3>Namn</h3>
+    <%= res[0].fornamn %> kr
+    <!-- <h3>Beskrivning</h3>
+    <%= res[0].beskrivning %>
+    <h3>Bildlänk</h3>
+    <%= res[0].bildlank %>
+    <h3>Produktkod</h3>
+    <%= res[0].kod %> -->
+    <table>
+        <tr>
+            <th>OrderId</th>
+            <th>Kundnr</th>
+            <th>Skapad</th>
+            <th>Status</th>
+            <th>Rader</th>
+            <th>Visa</th>
+        </tr>
+<% for (const row of res) { %>
+    <tr>
+        <td><%= row.orderid %></td>
+        <td><%= row.kund_nr %></td>
+        <td><%= row.skapad.toLocaleString() %></td>
+        <td><%= row.status %></td>
+        <td><%= row.antal_rader %></td>
+        <td><a href="/eshop/show-order/<%= row.orderid %>">&#128065;</a></td>
+        <!-- <td><a href="/eshop/edit/<%= row.orderid %>">Ändra</a></td> -->
+        <!-- <td><a href="/eshop/delete/<%= row.orderid %>">Radera</a></td> -->
+<% }; %>
+        <td class="right"></td>
+    </tr>
+    </table>
+
+</article>
+<%- include("footer"); %>

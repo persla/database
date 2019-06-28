@@ -1,0 +1,43 @@
+<%- include("header", {title: title}); %>
+<article class="">
+<h1>Order</h1>
+<!-- <p>Order med orderid:<b> <%= id %></b>.</p> -->
+<pre><%#= JSON.stringify(res, null, 4) %></pre>
+    <h3>Order id: <%= res[0].order_id %></h3>
+
+    <h3>Kundnr: <%= res[0].kund_nr %></h3>
+    <h3>Orderstatus: <%= res[0].status %></h3>
+
+    <table>
+        <tr>
+            <th>Produktkod</th>
+            <th>Titel</th>
+            <th>Antal</th>
+        </tr>
+<% for (const row of res) { %>
+    <tr>
+        <td><%= row.prod_kod %></td>
+        <td><%= row.titel %></td>
+        <td><%= row.antal %></td>
+        <!-- <td><%= row.status %></td>
+        <td><a href="/eshop/show-order/<%= row.orderid %>">Visa</a></td>
+        <td><a href="/eshop/edit/<%= row.orderid %>">Ändra</a></td>
+        <td><a href="/eshop/delete/<%= row.orderid %>">Radera</a></td> -->
+<% }; %>
+        <td class="right"></td>
+    </tr>
+    </table>
+    <p>
+    <a href="/eshop/ordering-order/<%= res[0].order_id %>">Lägg beställning</a>
+    </p><p>
+    <a href="/eshop/product-elect">Åter orderregister</a>
+    </p>
+
+    <form class="label-left" method="post">
+            <input id="order_id" type="hidden" name="order_id" readonly value=<%= id %>>
+            <input type="submit" name="doit" value="Order klar">
+    </form>
+
+</article>
+
+<%- include("footer"); %>

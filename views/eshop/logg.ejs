@@ -1,0 +1,30 @@
+<%- include("header", {title: title}); %>
+<article class="">
+<h1>Logg</h1>
+<form class="label-left" method="post" action="">
+    <fieldset>
+        <legend>Sök i loggen</legend>
+        <p>Skriv sökningen på följande sätt: <i>%sökord%</i></p>
+        <input id="search" type="text" name="search" placeholder="Skriv %sökordet% här" >
+        <input type="submit" name="doit" value="Sök">
+    </fieldset>
+</form><br>
+
+
+<table>
+    <tr>
+        <th>id</th>
+        <th>Tidsstämpel</th>
+        <th>Händelse</th>
+    </tr>
+<% for (const row of res) { %>
+    <tr>
+        <td><%= row.id %></td>
+        <td><%= row.Tidsstämpel.toLocaleString() %></td>
+        <td><%= row.Händelse %></td>
+    </tr>
+<% }; %>
+
+</table>
+</article>
+<%- include("footer"); %>
